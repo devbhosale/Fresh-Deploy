@@ -12,4 +12,5 @@
     - mariadb
     - nginx
     - wp-cli
+    - letsencrypt
     - { role: sites, enviro: php, tags: [ 'sites' ] }
