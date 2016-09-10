@@ -1,4 +1,5 @@
 ---
+
 www_root: /var/www/html
 apt_cache_valid_time: 86400
 default_timezone: Etc/UTC
@@ -28,3 +29,4 @@ mail_admin: admin@example.com
 mail_hostname: example.com
 mail_user: smtp_user
 mail_password: abc123
+

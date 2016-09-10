@@ -1,2 +1,9 @@
 [all]
 yourhostname.com
+    site_hosts:
+          - canonical: yourhostname.com
+            redirects:
+              - www.yourhostname.com
+    ssl:
+      enabled: true
+      provider: letsencrypt
