@@ -3,7 +3,7 @@
   args:
     creates: "{{ letsencrypt_keys_dir }}/{{ item.key }}.key"
   when: site_uses_letsencrypt
-  with_dict: "{{ inventory_hostname }}"
+  with_dict: "{{ wordpress_sites }}"
   tags: [letsencrypt_keys]
 
 - name: Ensure correct permissions on private keys
@@ -11,7 +11,7 @@
     path: "{{ letsencrypt_keys_dir }}/{{ item.key }}.key"
     mode: 0600
   when: site_uses_letsencrypt
-  with_dict: "{{ inventory_hostname }}"
+  with_dict: "{{ wordpress_sites }}"
   tags: [letsencrypt_keys]
 
 - name: Generate CSRs
@@ -20,7 +20,7 @@
     executable: /bin/bash
     creates: "{{ acme_tiny_data_directory }}/csrs/{{ item.key }}.csr"
   when: site_uses_letsencrypt
-  with_dict: "{{ inventory_hostname }}"
+  with_dict: "{{ wordpress_sites }}"
   tags: [letsencrypt_keys]
 
 - name: Generate the initial certificate
@@ -35,6 +35,6 @@
   file:
     path: "{{ nginx_path }}/sites-enabled/letsencrypt-{{ item.key }}.conf"
     state: absent
-  with_dict: "{{ inventory_hostname }}"
+  with_dict: "{{ wordpress_sites }}"
   when: sites_need_confs
   notify: reload nginx

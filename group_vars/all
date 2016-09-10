@@ -30,3 +30,14 @@ mail_hostname: example.com
 mail_user: smtp_user
 mail_password: abc123
 
+wordpress_sites:
+  yourhostname.com:
+    site_hosts:
+      - canonical: yourhostname.com
+        redirects:
+          - www.yourhostname.com
+    ssl:
+      enabled: true
+      provider: letsencrypt
+    cache:
+      enabled: false
