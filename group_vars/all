@@ -1,5 +1,9 @@
 ---
 
+site_hosts_canonical: "{{ item.value.site_hosts | map(attribute='canonical') | list }}"
+site_hosts_redirects: "{{ item.value.site_hosts | selectattr('redirects', 'defined') | sum(attribute='redirects', start=[]) | list }}"
+site_hosts: "{{ site_hosts_canonical | union(site_hosts_redirects) }}"
+
 www_root: /var/www/html
 apt_cache_valid_time: 86400
 default_timezone: Etc/UTC
