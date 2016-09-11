@@ -26,8 +26,8 @@
   when: not item | skipped and not item.stat.exists
   with_items: "{{ nginx_confs.results }}"
 
-- include: "{{ playbook_dir }}/roles/common/tasks/reload_nginx.yml"
-  when: sites_need_confs
+#- include: "{{ playbook_dir }}/roles/common/tasks/reload_nginx.yml"
+#  when: sites_need_confs
 
 - name: Create test Acme Challenge file
   shell: touch {{ acme_tiny_challenges_directory }}/ping.txt
